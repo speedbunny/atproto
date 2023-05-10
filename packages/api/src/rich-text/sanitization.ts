@@ -3,6 +3,13 @@ import { UnicodeString } from './unicode'
 
 const EXCESS_SPACE_RE = /[\r\n]([\u00AD\u2060\u200D\u200C\u200B\s]*[\r\n]){2,}/gs
 
+/**
+ * Sanitizes the given rich text by removing excess spaces or newlines.
+ * @param richText The rich text to sanitize.
+ * @param opts Options for sanitization.
+ *              - cleanNewlines: Whether to clean excess newlines.
+ * @returns The sanitized rich text.
+ */
 export function sanitizeRichText(
   richText: RichText,
   opts: { cleanNewlines?: boolean } = {},
@@ -12,6 +19,14 @@ export function sanitizeRichText(
   }
   return richText
 }
+
+/**
+ * Performs the actual sanitization of the rich text by removing the matched pattern and inserting the replacement.
+ * @param richText The rich text to sanitize.
+ * @param targetRegexp The regular expression pattern to match.
+ * @param replacementString The replacement string to insert.
+ * @returns The sanitized rich text. Function was originally called "clean".
+ */
 
 function sanitize(
   richText: RichText,
